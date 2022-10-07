@@ -1,4 +1,5 @@
 const url = "http://127.0.0.1:5000"
+const baseUrlImg = "http://localhost/backend-python-ersa/src/";
 $(document).ready(function() {
     setInterval(function(){
       let temp="";
@@ -35,9 +36,10 @@ $(document).ready(function() {
       .then(response => response.text())
       .then(result => {
         var myObj = JSON.parse(result);
-        console.log(myObj.data)
+        // console.log(myObj.data)
         var data = myObj.data.data;
         console.log(data);
+        document.querySelector('#img-test').src = baseUrlImg + data
         // data.forEach(element => {
         //   console.log(element);
         // });

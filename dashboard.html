@@ -167,6 +167,16 @@
             </div>
           </div>
         </div>
+        <div class="card mb-4 mt-3">
+          <div class="card-header pb-0">
+            <h6>Image Processing</h6>
+          </div>
+          <div class="card-body px-0 pt-0 pb-2 mb-3">
+            <div class="container">
+            <img id="img-test" class="rounded" src="" alt="">
+          </div>
+          </div>
+        </div>
         
         <!-- end body content -->
         <footer class="footer pt-3">
@@ -283,8 +293,60 @@
     <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="assets/js/plugins/chartjs.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="./js/dashboard.js">
+    <!-- <script src="./js/dashboard.js">
     
+    </script> -->
+    <script>
+      const url = "http://127.0.0.1:5000";
+      const baseUrlImg = "http://localhost/backend-python-ersa/src/";
+      $(document).ready(function() {
+          setInterval(function(){
+            let temp="";
+            let hum="";
+            var formdata = new FormData();
+            var requestOptions = {
+              method: 'GET',
+              // body: formdata,
+              redirect: 'follow'
+            };
+
+            fetch(url+"/sensor", requestOptions)
+              .then(response => response.text())
+              .then(result => {
+                var myObj = JSON.parse(result);
+              //   console.log(myObj.data)
+                var data = myObj.data;
+                data.forEach(element => {
+                  temp = element['temp'];
+                  hum = element['hum'];
+                  // console.log(hum);
+                  $("h5.temp").html(temp+" C");
+                  $("h5.hum").html(hum+ " %");
+                  if (hum>40) {
+                    $("h5.statuss").html("off");                  
+                  }else{
+                    $("h5.statuss").html("on");
+                  }
+                });
+              })
+              .catch(error => console.log('error', error));
+              
+            fetch(url+"/imageprocessing", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+              var myObj = JSON.parse(result);
+              // console.log(myObj.data)
+              var data = myObj.data.data;
+              console.log(data);
+              document.querySelector('#img-test').src = baseUrlImg + data
+              // data.forEach(element => {
+              //   console.log(element);
+              // });
+            })
+            .catch(error => console.log('error', error));
+            
+          },5000)
+      });
     </script>
     <script>
       var win = navigator.platform.indexOf("Win") > -1;
