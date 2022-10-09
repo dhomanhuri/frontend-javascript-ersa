@@ -3,8 +3,8 @@ const passwordValue = document.getElementById("password-value");
 const loginPostForm = document.querySelector(".add-post-form");
 
 let output = "";
-const url = "http://127.0.0.1:5000";
-// const url = "http://imageprocessing.promaydo.net:8080";
+// const url = "http://127.0.0.1:5000";
+const url = "http://imageprocessing.promaydo.net:8080";
 
 //login - methods post
 loginPostForm.addEventListener("submit", (e) => {
@@ -19,7 +19,7 @@ loginPostForm.addEventListener("submit", (e) => {
     redirect: "follow",
   };
 
-  fetch( url +"/login", requestOptions)
+  fetch(url + "/login", requestOptions)
     .then((response) => response.text())
     .then((result) => {
       myObj = JSON.parse(result);

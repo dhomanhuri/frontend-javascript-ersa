@@ -1,5 +1,5 @@
-// const url = "http://imageprocessing.promaydo.net:8080";
-const url = "http://127.0.0.1:5000";
+const url = "http://imageprocessing.promaydo.net:8080";
+// const url = "http://127.0.0.1:5000";
 const nameValue = document.getElementById("addnama");
 const emailValue = document.getElementById("addemail");
 const passwordValue = document.getElementById("addpassword");
@@ -29,7 +29,7 @@ addPostForm.addEventListener("submit", (e) => {
         body: formdata,
         redirect: "follow",
       };
-      fetch(url+"/userAdmin", requestOptions)
+      fetch(url + "/userAdmin", requestOptions)
         .then((response) => response.text())
         .then((result) => console.log(result))
         .catch((error) => console.log("error", error));

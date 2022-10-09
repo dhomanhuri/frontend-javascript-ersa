@@ -86,8 +86,7 @@
                     <div class="numbers">
                       <p class="text-sm mb-0 text-capitalize font-weight-bold">Temperature</p>
                       <h5 class="font-weight-bolder mb-0 temp">
-                        33 C
-                        <span class="text-success text-sm font-weight-bolder">+55 C</span>
+                        -
                       </h5>
                     </div>
                   </div>
@@ -108,8 +107,7 @@
                     <div class="numbers">
                       <p class="text-sm mb-0 text-capitalize font-weight-bold">Humidity</p>
                       <h5 class="font-weight-bolder mb-0 hum">
-                        2,3%
-                        <span class="text-success text-sm font-weight-bolder">+3%</span>
+                        -
                       </h5>
                     </div>
                   </div>
@@ -128,10 +126,9 @@
                 <div class="row">
                   <div class="col-8">
                     <div class="numbers">
-                      <p class="text-sm mb-0 text-capitalize font-weight-bold">Status</p>
+                      <p class="text-sm mb-0 text-capitalize font-weight-bold">Status Lampu</p>
                       <h5 class="font-weight-bolder mb-0 statuss">
-                        On
-                        <span class="text-danger text-sm font-weight-bolder">Off</span>
+                        -
                       </h5>
                     </div>
                   </div>
@@ -150,10 +147,9 @@
                 <div class="row">
                   <div class="col-8">
                     <div class="numbers">
-                      <p class="text-sm mb-0 text-capitalize font-weight-bold">Current User</p>
-                      <h5 class="font-weight-bolder mb-0">
-                        Ilyas
-                        <span class="text-success text-sm font-weight-bolder">Test</span>
+                      <p class="text-sm mb-0 text-capitalize font-weight-bold">Status Telur</p>
+                      <h5 class="font-weight-bolder mb-0 statusstelur">
+                        -
                       </h5>
                     </div>
                   </div>
@@ -297,7 +293,8 @@
     
     </script> -->
     <script>
-      const url = "http://127.0.0.1:5000";
+      // const url = "http://127.0.0.1:5000";
+      const url = "http://imageprocessing.promaydo.net:8080";
       const baseUrlImg = "http://localhost/backend-python-ersa/src/";
       $(document).ready(function() {
           setInterval(function(){
@@ -319,9 +316,11 @@
                 data.forEach(element => {
                   temp = element['temp'];
                   hum = element['hum'];
-                  // console.log(hum);
+                  telur = element['telur'];
+                  console.log(element);
                   $("h5.temp").html(temp+" C");
                   $("h5.hum").html(hum+ " %");
+                  $("h5.statusstelur").html(telur);
                   if (hum>40) {
                     $("h5.statuss").html("off");                  
                   }else{
